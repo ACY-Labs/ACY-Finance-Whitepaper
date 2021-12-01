@@ -82,73 +82,9 @@ The specific scheme of FlashArbitrage is shown in the following figure. Instead 
 
 To maximize the arbitrage profit, we establish a model to calculate the ratio of different routes.
 
-## 3-1 Mathematical Walkthrough
-
-Assume we want to use $\Delta X$ to exchange $\Delta Y$. One of the Triangular Arbitrage opportunity is to use some token $X$ to exchange for some token $Z$, and subsequently exchange this for some $Y$.
-
-The optimal relationship is given as following:
-
-![fig3.jpg](./figs/fig3.jpeg)
-
-<center>Fig.3 The Optimal Distribution</center>
-
-#### Variables are given below:
 
 
-
-$\Z_x$: Total Z token amount in the X/Z pool
-
-$\Z_y$: Total Z token amount in the Y/Z pool
-
-$X_z$: Total X token amount in the X/Z pool
-
-$Y_x$: Total Y token amount in the Y/Z pool
-
-$X$: Total X token amount in the X/Y pool
-
-$Y$: Total Y token amount in the X/Y pool
-
-$C$: 1 - TransactionFees​
-
-$P$: The price of **X** per **Y** by using $\Delta X$ to exchange $\Delta Y$ in X/Y pool
-
-$P_{arb}$: The price of x per y by using $\Delta X_z$ to exchange $\Delta Z_x$ in X/Z pool, and subsequently using this to exchange $\Delta Y_z$ in Y/Z pool
-
-$$
-\Delta Z_x=Z_x(\Delta X_z)C/(X_z+C\Delta X_z) \\
-\Delta Y_z=Y_z(\Delta Z_y)C/(Z_y+\Delta Z_yC) \\
-$$
-Set $\Delta Z_x = \Delta Z_y$,
-$$
-\Delta Y_z=Y_zC\Delta Z_x/(Z_y+C\Delta Z_x) \\
-\Delta Y_z=\frac{Y_zC(Z_xC\Delta X_z)/(X_z+C\Delta X_z)}{Z_y+C(Z_xC\Delta X_z)/(X+C\Delta X_z)} \\
-\Delta Y_z=\frac{Y_z(C^2Z_x)\Delta X_z/(X_z+C\Delta X_z)}{Z_y+(C^2Z_x)\Delta X_z/(X+C\Delta X_z)}
-$$
-Set $R=(C^2Z_x)\Delta X_z/(X_z+C\Delta X_z)$
-
-$$
-\Delta Y_z=\frac{Y_z}{(Z_y/R)+1} \\
-P_{arb}=\frac{C\Delta X_z}{\Delta Y_z}=\frac{C\Delta X_z[(Z_y/R)+1]}{Y_z} \\
-P=\frac{C\Delta X}{\Delta Y}=\frac{X+C\Delta X}{Y}
-$$
-No arbitrage theory: $P_{arb}=P$
-
-$$
-\frac{C\Delta X_z[(Z_y/R)+1]}{Y_z}=\frac{X+C\Delta X}{Y} \\
-C\Delta X_z[(Z_y/R)+1]=\frac{X+C\Delta X}{Y/Y_z}   (1)\\
-\frac{Z_y}{R}+1=\frac{Z_y(X_z+C\Delta X_z)+C^2Z_x\Delta X_z}{C^2Z_x\Delta X_z} \\
-\frac{Z_y}{R}+1=\frac{(Z_yX_z/\Delta X)+Z_yC+C^2Z_x}{C^2Z_x}  (2)\\
-$$
-By Inserting the result from equation (2) into equation (1) we can get
-
-$$
-\frac{Z_yX_z+(Z_yC+C^2Z_x)\Delta X_z}{CZ_x}=\frac{X+C\Delta X}{Y/Y_z} \\
-\frac{Z_yX_z}{CZ_x}+\frac{(Z_yC+C^2Z_x)}{CZ_x}\Delta X_z=\frac{X+C\Delta X}{Y/Y_z} \\
-\Delta X_z=[\frac{X+\Delta X}{Y/Y_z}-\frac{Z_yX_z}{CZ_x}]\frac{Z_x}{(Z_y+CZ_x)} (3)
-$$
-Equation (3) gives the proportion of token X that should be exchanged into token Z and then into token Y. Moreover, $\Delta X_{total}= \Delta X_a+\Delta X_b+...+\Delta X_z$, while A, B, ..., Z are the tokens used in arbitrages. Based on the aforementioned equations, the optimal solution of flash arbitrage can be solved for.
-
-## 3-2 Multi-Routing Flash Arbitrage
+## 3-1 Multi-Routing Flash Arbitrage
 
 In the basic version, we consider only one intermediate currency, only one hand is turned, and the arbitrage space can be completely smoothed out. In the Pro version, we use a different mathematical modeling approach to solve optimization problems that allow for multiple intermediate currencies and situations where the arbitrage space cannot be completely smoothed out. That is, in the Pro version, we provide a globally optimal solution that guarantees traders a minimum slip point consistent with the theoretical value.
 
