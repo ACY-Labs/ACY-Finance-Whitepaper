@@ -28,9 +28,6 @@ DEX is the crown jewel in the field of Defi. Starting from AMM of Uniswap V2, us
 
 Who benefited from the losses? The answer is the arbitrageurs. In an ideal state, users exchange token A for token B, and the price should remain the same regardless of the way and route of exchanges. However, that is not the reality. If only one transaction pair is used for token exchange, the AMM algorithm will raise the price to a very high position because of the limited amount of liquidity funds in the transaction pair. If the user exchanges token B at this price, the arbitrageur would exchange token A for token B through other channels, and then sell at this price.
 
-![fig1.jpg](./figs/fig1.jpg)
-
-Fig. 1 Triangular Arbitrage in DEX
 
 A considerable amount of profits can be gained this way. As shown in the figure below, the arbitrageur can frequently find arbitrage opportunities brought by the price difference between different trading pairs and obtain profits. The source of these profits is the losses borne by users who trade through DEX.
 
